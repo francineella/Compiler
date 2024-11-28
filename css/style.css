@@ -28,19 +28,42 @@ body {
     width: 200px;
 }
 
-.compiler-controls {
+.button {
     display:block;
     width: 300px;
-    }
+}
 
-.btn {
+.compiler-controls {
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    background-color: #000000;
+    justify-content: flex-end;
+    align-items: center;
+   }
+
+.btn compiler-btn {
     margin: 5px;
     padding: 10px;
     display: flex;
     background-color: #6c17d4;
+    border: 2px solid #333;
+    border-radius: 8px;
     justify-content: flex-end;
     align-items: center;
+    font-size: 24px;
+    transition-duration: 0.4s;
 }
+
+.btn compiler-btn:hover {
+    background-color: #6c17d4; /* Green */
+    color: #36086e;
+  }
+
+.btn .disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 
 
 
