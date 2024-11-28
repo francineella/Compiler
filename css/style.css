@@ -33,7 +33,7 @@ body {
     width: 300px;
     }
 
-.compiler-controls {
+.btn compiler-btn {
     margin: 5px;
     padding: 10px;
     display: flex;
