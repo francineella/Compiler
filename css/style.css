@@ -29,7 +29,7 @@ body {
 }
 
 .button {
-    display:block;
+    display:inline-block;
     width: 150px;
 }
 
