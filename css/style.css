@@ -28,10 +28,6 @@ body {
     width: 200px;
 }
 
-.button {
-    display:inline-block;
-    width: 150px;
-}
 
 .compiler-controls {
     margin: 5px;
