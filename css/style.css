@@ -30,7 +30,7 @@ body {
 
 .compiler-controls {
     margin: 5px;
-    padding: 10px;
+    padding: 5px;
     display: flex;
     background-color: whitesmoke;
     justify-content: flex-end;
