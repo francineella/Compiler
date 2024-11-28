@@ -28,14 +28,14 @@ body {
     width: 200px;
 }
 
-.compiler-controls {
+/*.compiler-controls {
     margin: 5px;
     padding: 10px 24px;
     display: flex;
     background-color: whitesmoke;
     justify-content: flex-end;
     align-items: center;
-   }
+   } */
 
 .btn {
     margin: 5px;
