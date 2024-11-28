@@ -28,6 +28,22 @@ body {
     width: 200px;
 }
 
+.button {
+    display:block;
+    width: 300px;
+    }
+
+.compiler-controls {
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    background-color: #6c17d4;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+
 .main {
     flex: 1;
     padding: 10px;
