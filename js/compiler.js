@@ -185,6 +185,7 @@ function syntaxAnalyzer() {
     }
 }
 
+
 function semanticAnalyzer() {
     if (!syntaxPassed) {
         showOutput('Please complete syntax analysis first');
