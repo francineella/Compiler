@@ -6,7 +6,7 @@ let literalInput = "";
 let tokenList = "";
 
 // Constants
-const TOKENS = {
+/*const TOKENS = {
     ASSIGN: '=',
     SEMICOLON: ';',
     DATA_TYPES: ['int', 'double', 'char', 'String', 'boolean'],
@@ -18,7 +18,7 @@ const TOKENS = {
         IDENTIFIER: /^[a-zA-Z_$][a-zA-Z0-9_$]*$/,
         BOOLEAN: /^(true|false)$/
     }
-};
+}; */
 
 // Get DOM elements
 const codeInput = document.getElementById('codeInput');
