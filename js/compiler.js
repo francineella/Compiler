@@ -1,5 +1,5 @@
 // Global state
-let lexicalPassed = false;
+let lexicalPassed = true;
 let syntaxPassed = false;
 let semanticPassed = false;
 let literalInput = "";
