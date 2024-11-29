@@ -195,15 +195,72 @@ function semanticAnalyzer() {
     let isValid = true;
 
     for (const line of lines) {
-        const tokens = line.split('|').filter(token => token.trim());
+        const tokens = line.split('|').filter(token => token.trim()); // Extract tokens
         if (tokens.length >= 4) {
-            const [dataType, identifier, , value] = tokens;
-            
-            // Check if value matches declared data type
-            if (!isValueMatchingType(dataType, value)) {
+            // Format: data_type | identifier | assignment_operator | value
+            const dataType = tokens[0]; // e.g., int
+            const identifier = tokens[1]; // e.g., x
+            const assignmentOp = tokens[2]; // e.g., =
+            const value = tokens[3]; // e.g., 10
+
+            // Check semantics using if-else
+            if (assignmentOp === '=') {
+                if (dataType === 'int') {
+                    if (!TOKENS.PATTERNS.INTEGER.test(value)) {
+                        console.error(`Semantic Error: ${value} is not a valid int`);
+                        isValid = false;
+                        break;
+                    }
+                } else if (dataType === 'double') {
+                    if (!TOKENS.PATTERNS.DOUBLE.test(value)) {
+                        console.error(`Semantic Error: ${value} is not a valid double`);
+                        isValid = false;
+                        break;
+                    }
+                } else if (dataType === 'char') {
+                    if (!TOKENS.PATTERNS.CHAR.test(value)) {
+                        console.error(`Semantic Error: ${value} is not a valid char`);
+                        isValid = false;
+                        break;
+                    }
+                } else if (dataType === 'String') {
+                    if (!TOKENS.PATTERNS.STRING.test(value)) {
+                        console.error(`Semantic Error: ${value} is not a valid String`);
+                        isValid = false;
+                        break;
+                    }
+                } else if (dataType === 'boolean') {
+                    if (!TOKENS.PATTERNS.BOOLEAN.test(value)) {
+                        console.error(`Semantic Error: ${value} is not a valid boolean`);
+                        isValid = false;
+                        break;
+                    }
+                } else {
+                    console.error(`Unknown data type: ${dataType}`);
+                    isValid = false;
+                    break;
+                }
+            } else {
+                console.error(`Missing assignment operator for ${identifier}`);
                 isValid = false;
                 break;
             }
+        } else if (tokens.length === 3) {
+            // Format: data_type | identifier | delimiter
+            const dataType = tokens[0];
+            const identifier = tokens[1];
+            const delimiter = tokens[2];
+
+            if (delimiter !== ';') {
+                console.error(`Semantic Error: Missing semicolon for ${identifier}`);
+                isValid = false;
+                break;
+            }
+            // No further semantic check needed for uninitialized declarations
+        } else {
+            console.error(`Invalid line format: ${line}`);
+            isValid = false;
+            break;
         }
     }
 
@@ -216,7 +273,7 @@ function semanticAnalyzer() {
     }
 }
 
-function tokenize(line) {
+/*function tokenize(line) {
     const tokens = [];
     const words = line.split(/\s+/);
     
@@ -239,7 +296,7 @@ function tokenize(line) {
     }
     
     return tokens;
-}
+} */
 
 function isValue(word) {
     return (
