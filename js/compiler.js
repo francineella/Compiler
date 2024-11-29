@@ -18,6 +18,7 @@ const TOKENS = {
         IDENTIFIER: /^[a-zA-Z_$][a-zA-Z0-9_$]*$/,
         BOOLEAN: /^(true|false)$/
     }
+    
 };
 
 // Get DOM elements
@@ -55,6 +56,8 @@ function openFile() {
     
     input.click();
 }
+
+
 
 function lexicalAnalyzer() {
     const code = codeInput.value.trim();
@@ -109,8 +112,9 @@ function lexicalAnalyzer() {
         }
         
         return tokens;
+
+        
     }
-    
 
     if (isValid) {
         lexicalPassed = true;
@@ -134,15 +138,37 @@ function syntaxAnalyzer() {
     let isValid = true;
 
     for (const line of lines) {
-        // Valid patterns:
-        // 1. data_type identifier assignment_operator value delimiter
-        // 2. data_type identifier delimiter
-        const validPatterns = [
-            'data_type identifier assignment_operator value delimiter',
-            'data_type identifier delimiter'
-        ];
-        
-        if (!validPatterns.includes(line.trim())) {
+        // Check each line of tokens
+        const tokens = line.trim().split(' ');
+
+        if (tokens.length === 5) {
+            // Pattern: data_type identifier assignment_operator value delimiter
+            if (
+                tokens[0] === 'data_type' &&
+                tokens[1] === 'identifier' &&
+                tokens[2] === 'assignment_operator' &&
+                tokens[3] === 'value' &&
+                tokens[4] === 'delimiter'
+            ) {
+                continue; // Syntax is valid for this pattern
+            } else {
+                isValid = false;
+                break;
+            }
+        } else if (tokens.length === 3) {
+            // Pattern: data_type identifier delimiter
+            if (
+                tokens[0] === 'data_type' &&
+                tokens[1] === 'identifier' &&
+                tokens[2] === 'delimiter'
+            ) {
+                continue; // Syntax is valid for this pattern
+            } else {
+                isValid = false;
+                break;
+            }
+        } else {
+            // Invalid token sequence length
             isValid = false;
             break;
         }
@@ -158,6 +184,7 @@ function syntaxAnalyzer() {
         disableButton(semanticBtn);
     }
 }
+
 
 function semanticAnalyzer() {
     if (!syntaxPassed) {
