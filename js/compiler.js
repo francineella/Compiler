@@ -18,6 +18,7 @@ const TOKENS = {
         IDENTIFIER: /^[a-zA-Z_$][a-zA-Z0-9_$]*$/,
         BOOLEAN: /^(true|false)$/
     }
+    
 };
 
 // Get DOM elements
@@ -55,6 +56,8 @@ function openFile() {
     
     input.click();
 }
+
+
 
 function lexicalAnalyzer() {
     const code = codeInput.value.trim();
@@ -109,8 +112,9 @@ function lexicalAnalyzer() {
         }
         
         return tokens;
+
+        
     }
-    
 
     if (isValid) {
         lexicalPassed = true;
